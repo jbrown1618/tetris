@@ -15,5 +15,4 @@ Open `./index.html`
 
 - Unit tests!
 - Integration tests!
-- Bug: unable to clear multiple lines at once
 - Extract controller from Game.ts to allow multiple means of control and to allow a reasonable api to be exposed by index.ts

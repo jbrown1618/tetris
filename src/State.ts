@@ -171,10 +171,7 @@ export class State {
     const currentCol = this.active.topLeft.col;
 
     this.active.forEach((value, rowIndex, colIndex) => {
-      if (
-        this.isInBounds(currentRow + rowIndex, currentCol + colIndex) &&
-        value
-      ) {
+      if (this.isInBounds(currentRow + rowIndex, currentCol + colIndex) && value) {
         this.landed[currentRow + rowIndex][currentCol + colIndex] += value;
       }
     });
@@ -189,17 +186,14 @@ export class State {
     for (let rowIndex = this.landed.length - 1; rowIndex >= 0; rowIndex--) {
       if (this.isFull(rowIndex)) {
         this.clearRow(rowIndex);
+        rowIndex++;
       }
     }
   }
 
   private isFull(rowIndex: number) {
     let full = true;
-    for (
-      let colIndex = 0;
-      colIndex < this.landed[rowIndex].length;
-      colIndex++
-    ) {
+    for (let colIndex = 0; colIndex < this.landed[rowIndex].length; colIndex++) {
       if (this.landed[rowIndex][colIndex] === 0) {
         full = false;
         break;
@@ -210,11 +204,7 @@ export class State {
 
   private clearRow(initialRowIndex: number) {
     for (let rowIndex = initialRowIndex; rowIndex >= 0; rowIndex--) {
-      for (
-        let colIndex = 0;
-        colIndex < this.landed[rowIndex].length;
-        colIndex++
-      ) {
+      for (let colIndex = 0; colIndex < this.landed[rowIndex].length; colIndex++) {
         if (rowIndex === 0) {
           this.landed[rowIndex][colIndex] = 0;
         } else {
