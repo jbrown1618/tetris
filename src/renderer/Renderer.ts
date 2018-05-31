@@ -1,5 +1,5 @@
-import {State} from "../State";
+import { State } from "../State";
 
 export interface Renderer {
-    render: (state: State) => void;
+  render: (state: State) => void;
 }
