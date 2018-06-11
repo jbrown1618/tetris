@@ -2,10 +2,11 @@ import { Tetromino } from "./Tetromino";
 import { cloneDeep } from "lodash";
 
 export class State {
-  landed: number[][];
-  active: Tetromino;
-  next: Tetromino;
-  gameOver = false;
+  public landed: number[][];
+  public active: Tetromino;
+
+  private next: Tetromino;
+  private gameOver = false;
 
   constructor() {
     this.active = Tetromino.random();
@@ -28,6 +29,10 @@ export class State {
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     ];
+  }
+
+  public isGameOver() {
+    return this.gameOver;
   }
 
   public tick() {
@@ -67,7 +72,6 @@ export class State {
   }
 
   private isOffRightEdge() {
-    const currentRow = this.active.topLeft.row;
     const currentCol = this.active.topLeft.col;
     return this.active.any((value, rowIndex, colIndex) => {
       return value && currentCol + colIndex >= this.landed[0].length;
